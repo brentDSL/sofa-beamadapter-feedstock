@@ -35,6 +35,18 @@ tests:
         - BeamAdapter/BeamAdapter/config.h
       lib:
         - BeamAdapter
+  # Load the plugin from Python and step a catheter deployment scene, so a
+  # package that installs but cannot simulate fails here.
+  - script:
+      - python run_test_beam.py
+    files:
+      recipe:
+        - run_test_beam.py
+    requirements:
+      run:
+        - python
+        - numpy
+        - sofa-python3 ${{ major_minor }}.*
   - script:
       - cmake-package-check BeamAdapter
     requirements:
